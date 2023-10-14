@@ -2,10 +2,8 @@ package br.com.recoleta.app.users;
 
 
 import java.util.Collection;
-import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
@@ -40,16 +38,17 @@ public class User implements UserDetails{
 	private String cpfCnpj;
 	private String fone;
 	@Enumerated(EnumType.STRING)
-	private UserRole userRole;
-	@Enumerated(EnumType.STRING)
 	private UserType type;
-	
+
+	//private UserRole userRole;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
-		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
-		return Collections.singletonList(authority);
+		return null;
+		
+		//SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
+		//return Collections.singletonList(authority);
 	}
 
 
@@ -92,15 +91,13 @@ public class User implements UserDetails{
 	}
 
 
-	public User(String firstName, String lastName, String email, String password, String cpfCnpj, String fone,
-			UserRole userRole, UserType type) {
+	public User(String firstName, String lastName, String email, String password, String cpfCnpj, String fone, UserType type) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.cpfCnpj = cpfCnpj;
 		this.fone = fone;
-		this.userRole = userRole;
 		this.type = type;
 	}
 
