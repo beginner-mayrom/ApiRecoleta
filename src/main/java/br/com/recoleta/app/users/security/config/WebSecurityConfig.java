@@ -25,11 +25,12 @@ public class WebSecurityConfig{
 		
 		//método antigo
 		http
+		 .csrf().disable()
 		.authorizeRequests()
         .requestMatchers("/registration/**").permitAll()
         .requestMatchers("/user/**").permitAll()
         .anyRequest().authenticated()
-        .and().csrf().disable();
+       .and().formLogin();
 		
 		/*método atual, mas não funciona
 		http
